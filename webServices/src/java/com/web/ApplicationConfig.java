@@ -30,8 +30,9 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.web.AccountController.class);
-        resources.add(com.web.adminController.class);
+        resources.add(com.web.adminstratorController.class);
         resources.add(com.web.controller.class);
+        resources.add(com.web.customerController.class);
         resources.add(com.web.test.class);
         resources.add(com.web.usersController.class);
     }

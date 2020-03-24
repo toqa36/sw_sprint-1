@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
  * @author toqa khaled
  */
 @Path("admin")
-public class adminController {
+public class adminstratorController {
 
     @GET
     @Path("/getAllUsers")
@@ -45,10 +45,8 @@ public class adminController {
             m.setStatus(rs.getString("status"));
             m.setAddress(rs.getString("address"));
             m.setNationality(rs.getString("nationality"));
-            
             tmp.add(m);
         }
-
         return tmp;
     }
 

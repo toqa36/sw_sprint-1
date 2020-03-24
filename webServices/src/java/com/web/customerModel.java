@@ -5,10 +5,15 @@
  */
 package com.web;
 
+import static org.apache.coyote.http11.Constants.a;
+
 /**
  *
  * @author toqa khaled
  */
-public class normalUserController {
+public class customerModel extends UsersModel{
+   
+    public AccountController a=new AccountController();
     
+ 
 }
