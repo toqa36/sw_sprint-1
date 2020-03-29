@@ -47,11 +47,16 @@ public class adminstratorController {
             m.setStatus(rs.getString("status"));
             m.setAddress(rs.getString("address"));
             m.setNationality(rs.getString("nationality"));
+<<<<<<< HEAD:webServices/src/java/com/web/adminstratorController.java
             m.setStatus(rs.getString("status"));
             tmp.add(m);
         }
         return tmp;
         } 
+=======
+            tmp.add(m);
+        }
+>>>>>>> cf8e59925a47f22c944aa450cd969acfd530daa5:webServices/src/java/com/web/adminController.java
         return tmp;
     }
 
