@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -22,15 +23,16 @@ import javax.ws.rs.core.MediaType;
  * @author toqa khaled
  */
 @Path("admin")
-public class adminController {
+public class adminstratorController {
 
     @GET
-    @Path("/getAllUsers")
+    @Path("/getAllUsers/{status}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public ArrayList<AccountModel> getAllUsers() throws ClassNotFoundException, SQLException {
+    public ArrayList<AccountModel> getAllUsers(@PathParam("status")String status) throws SQLException, ClassNotFoundException {
         ArrayList<AccountModel> tmp = new ArrayList();
         AccountModel m = new AccountModel();
+        if(status.equals("admin")){
         String query = "select * from users";
         Connection con = null;
         Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -45,10 +47,11 @@ public class adminController {
             m.setStatus(rs.getString("status"));
             m.setAddress(rs.getString("address"));
             m.setNationality(rs.getString("nationality"));
-            
+            m.setStatus(rs.getString("status"));
             tmp.add(m);
         }
-
+        return tmp;
+        } 
         return tmp;
     }
 

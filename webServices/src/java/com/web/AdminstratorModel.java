@@ -9,6 +9,6 @@ package com.web;
  *
  * @author toqa khaled
  */
-public class AdminModel extends UsersModel{
+public class AdminstratorModel extends UsersModel{
     
 }
