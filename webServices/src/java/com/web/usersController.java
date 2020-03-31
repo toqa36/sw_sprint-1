@@ -26,15 +26,14 @@ import javax.ws.rs.core.MediaType;
 @Path("users")
 public class usersController {
     
-    @POST
-    @Path("/login")
+    @GET
+    @Path("/login/{email}/{password}")
     @Produces(MediaType.APPLICATION_JSON)
      
-     public ArrayList<UsersModel> logIn(@PathParam("name")String em) throws ClassNotFoundException, SQLException{
+     public String logIn(@PathParam("email")String email,@PathParam("password") String password) throws ClassNotFoundException, SQLException{
          ArrayList<UsersModel> tmp =new ArrayList();
          UsersModel m=new UsersModel();
-         //System.out.println(em);
-         String query="select * from users where name="+em+"" ;
+         String query="select * from users where email='"+email+"' and password='"+password+"'" ;
         Connection con=null;
         Class.forName("org.apache.derby.jdbc.ClientDriver");
         con = DriverManager.getConnection("jdbc:derby://localhost:1527/database", "toqa", "123");
@@ -42,12 +41,14 @@ public class usersController {
         ResultSet rs= st.executeQuery(query);
          
          if(rs.next()){
-            m.setStatus(rs.getString("status"));
             m.setEmail(rs.getString("email"));
             tmp.add(m);
         }
-         
-         return tmp;
+         if(tmp.size()==1){
+             return "you are logged in";
+         }
+         else
+             return "mail or password incorrect";
      }
     
 }

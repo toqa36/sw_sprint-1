@@ -16,6 +16,10 @@ public class AccountModel {
     String gender;
     String address;
     String nationality;
+
+    public String getStatus() {
+        return status;
+    }
     String status;
 
     public void setStatus(String status) {

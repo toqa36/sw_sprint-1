@@ -25,23 +25,15 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("account")
 public class AccountController {
-<<<<<<< HEAD
-
-=======
-    AccountController(){}
->>>>>>> cf8e59925a47f22c944aa450cd969acfd530daa5
     @GET
     @Path("/register/{name}/{email}/{password}/{gender}/{address}/{nationality}/{status}")
     @Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-
     public String register(@PathParam("name") String name, @PathParam("email") String email, @PathParam("password") String password,
             @PathParam("gender") String gender, @PathParam("address") String address, @PathParam("nationality") String nationality, @PathParam("status") String status) throws ClassNotFoundException, SQLException {
         ArrayList<UsersModel> tmp = new ArrayList();
         String query = "select email from users where users.email='" + email + "'";
         Connection con = null;
         Class.forName("org.apache.derby.jdbc.ClientDriver");
-
         con = DriverManager.getConnection("jdbc:derby://localhost:1527/database", "toqa", "123");
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
@@ -69,31 +61,4 @@ public class AccountController {
             return "your registeration confirmed";
         }
     }
-=======
-    
-    //public String register(String name,String password,String email,String gender,String address,String nationality) 
-      public String register(/*String email/*,String password,String email,String gender,String address,String nationality*/) throws ClassNotFoundException, SQLException{
-        ArrayList<UsersModel> tmp =new ArrayList();
-        String query="select * from users where email='moahmed@gmail.com'"; 
-        Connection con=null;
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-      
-        con = DriverManager.getConnection("jdbc:derby://localhost:1527/database", "toqa", "123");
-        Statement st= con.createStatement();
-        ResultSet rs= st.executeQuery(query);
-        
-        if(rs.next()){
-            UsersModel m=new UsersModel();
-            m.setEmail(rs.getString("email"));
-            tmp.add(m);
-        }
-        if(tmp.size()!=0)
-            return "this account taken before please choose another one";
-        else{
-           query="insert into users values('mohamed','mohamed@gmail.com','369','male','maadi','egyptaiano','user')"; 
-            PreparedStatement s= con.prepareStatement(query);
-            s.executeUpdate();
-        return "your registeration confirmed"; } 
-    }   
->>>>>>> cf8e59925a47f22c944aa450cd969acfd530daa5
 }
