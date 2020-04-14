@@ -31,20 +31,27 @@ public class AccountController {
     public String register(@PathParam("name") String name, @PathParam("email") String email, @PathParam("password") String password,
             @PathParam("gender") String gender, @PathParam("address") String address, @PathParam("nationality") String nationality, @PathParam("status") String status) throws ClassNotFoundException, SQLException {
         ArrayList<UsersModel> tmp = new ArrayList();
-        String query = "select email from users where users.email='" + email + "'";
-        Connection con = null;
+         ArrayList<UsersModel> cname = new ArrayList();
+         if (!isValidEmail(email)){
+        return "Please Enter Correct Email";}
+        String query ="select * from users where users.email='"+email+"' and users.name='"+name+"'" ;
+       Connection con = null;
         Class.forName("org.apache.derby.jdbc.ClientDriver");
         con = DriverManager.getConnection("jdbc:derby://localhost:1527/database", "toqa", "123");
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
 
+       
         if (rs.next()) {
-            UsersModel m = new UsersModel();
-            m.setEmail(rs.getString("email"));
-            tmp.add(m);
+            UsersModel mail = new UsersModel();
+            UsersModel namee = new UsersModel();
+            mail.setEmail(rs.getString("email"));
+            namee.setName(rs.getString("name"));
+            tmp.add(mail);
+            cname.add(namee);
         }
-        if (tmp.size() != 0) {
-            return "this account taken before please choose another one";
+        if (tmp.size() != 0 || cname.size()!=0) {
+            return "this account taken before please choose another one or the name is already exist";
         } else if (status.equals("admin")) {
             return "you can not register as an admin";
         } else {
@@ -60,5 +67,23 @@ public class AccountController {
             s.executeUpdate();
             return "your registeration confirmed";
         }
+    }
+     private static boolean isValidEmail(String email)
+    {
+        boolean ret = true;
+
+        if(email==null || email.trim().length()==0)
+        {
+            ret = false;
+        }else
+        {
+            int index = email.indexOf("@");
+            if(index == -1)
+            {
+                ret = false;
+            }
+        }
+
+        return ret;
     }
 }
