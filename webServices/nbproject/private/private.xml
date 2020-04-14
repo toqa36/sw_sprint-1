@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/customerModel.java</file>
             <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/adminstratorController.java</file>
-            <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/usersController.java</file>
+            <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/AdminstratorModel.java</file>
+            <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/UsersModel.java</file>
             <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/AccountController.java</file>
             <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/AccountModel.java</file>
+            <file>file:/D:/FCI/y3-t2/SW-2/Project/SE-II-2020-ProjectDescription-v1.0/webService/sw_sprint-1/webServices/src/java/com/web/customerController.java</file>
         </group>
     </open-files>
 </project-private>

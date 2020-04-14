@@ -17,9 +17,45 @@ import javax.ws.rs.core.MediaType;
 
 
 public class UsersModel {
+    String name;
     public String email;
     public String password;
     public String status;
+    String gender;
+    String address;
+    String nationality;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
      
     public String getEmail() {
         return email;
