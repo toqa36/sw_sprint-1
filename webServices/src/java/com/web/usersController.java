@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -31,6 +30,7 @@ public class usersController {
          ArrayList<UsersModel> tmp =new ArrayList();
          UsersModel m=new UsersModel();
           if (!isValidEmail(email)){
+
              return "Please Enter Correct Email ";     
          }
          String query="select * from users where email='"+email+"' and password='"+password+"'" ;
@@ -99,6 +99,7 @@ public class usersController {
         }else
         {
             int index = email.indexOf("@gmail.com");
+
             if(index == -1)
             {
                 ret = false;
@@ -107,6 +108,5 @@ public class usersController {
 
         return ret;
     }
-     
     
 }
