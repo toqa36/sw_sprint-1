@@ -9,6 +9,10 @@ package com.web;
  *
  * @author toqa khaled
  */
+
 public class OwnerModel extends UsersModel{
+    OwnerController oc= new OwnerController();
+     public void putProduct(String item,int price,String description)
+     {oc.putProduct(item, price, description);}
     
 }

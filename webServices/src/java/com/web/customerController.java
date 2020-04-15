@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -22,8 +23,11 @@ import javax.ws.rs.core.MediaType;
  * @author toqa khaled
  */
 
- @Path("normalUser")
+ @Path("customer")
 public class customerController {
-    
+     public ArrayList<String> viewProduct(){return null;}
+     public void buyProduct(){}
+ 
+
     }
 

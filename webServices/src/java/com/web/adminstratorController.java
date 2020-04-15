@@ -22,15 +22,11 @@ import javax.ws.rs.core.MediaType;
  *
  * @author toqa khaled
  */
-@Path("admin")
-public class adminstratorController {
 
-    @GET
-    @Path("/getAllUsers/{status}")
-    @Produces(MediaType.APPLICATION_JSON)
+public class adminstratorController  {
 
-    public ArrayList<AccountModel> getAllUsers(@PathParam("status")String status) throws SQLException, ClassNotFoundException {
-        ArrayList<AccountModel> tmp = new ArrayList();
+    public ArrayList<UsersModel> getAllUsers(String status) throws ClassNotFoundException, SQLException  {
+        ArrayList<UsersModel> tmp = new ArrayList();
         if(status.equals("admin")){
         String query = "select * from users";
         Connection con = null;
@@ -39,7 +35,7 @@ public class adminstratorController {
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
-            AccountModel m = new AccountModel();
+            UsersModel m = new UsersModel();
             m.setName(rs.getString("name"));
             m.setEmail(rs.getString("email"));
             m.setGender(rs.getString("gender"));
@@ -55,5 +51,9 @@ public class adminstratorController {
             return tmp;
        
     }
-
+    
+     public void managePrands(){}
+    
+    public void acceptAdmins(){}
+    
 }
