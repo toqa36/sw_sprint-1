@@ -10,5 +10,7 @@ package com.web;
  * @author toqa khaled
  */
 public class OwnerController {
+    public void putProduct(String item,int price,String description){}
+    
     
 }

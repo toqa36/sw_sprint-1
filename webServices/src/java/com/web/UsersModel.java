@@ -16,9 +16,10 @@ import javax.ws.rs.core.MediaType;
  *
  * @author toqa khaled
  */
-
 @Path("users")
 public class UsersModel {
+
+
 
     String name;
     public String email;
@@ -31,6 +32,8 @@ public class UsersModel {
     usersController uc= new usersController();
     
     
+
+
 
     public String getName() {
         return name;
@@ -87,21 +90,32 @@ public class UsersModel {
     public void setStatus(String status) {
         this.status = status;
     }
+
     
     @GET
-    @Path("/login/{email}/{password}")
+    @Path("/login/{email}/{password}/{status}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String logIn(@PathParam("email")String email,@PathParam("password") String password) throws ClassNotFoundException, SQLException
+    public String logIn(@PathParam("email")String email,@PathParam("password") String password,@PathParam("status")String status) throws ClassNotFoundException, SQLException
     {
-            return uc.logIn(email, password);
+            return uc.logIn(email, password,status);
+
+
+   
+
     }
 
     @GET
     @Path("/register/{name}/{email}/{password}/{gender}/{address}/{nationality}/{status}")
     @Produces(MediaType.APPLICATION_JSON)
     public String register(@PathParam("name") String name, @PathParam("email") String email, @PathParam("password") String password,
+
             @PathParam("gender") String gender, @PathParam("address") String address, @PathParam("nationality") String nationality, @PathParam("status") String status) throws ClassNotFoundException, SQLException 
     {
        return uc.register(name, email, password, gender, address, nationality, status);
     }
 }
+
+          
+    
+
+
