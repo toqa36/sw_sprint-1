@@ -6,6 +6,6 @@ for getAllUsers ---> http://localhost:8084/webServices/webresources/admin/getAll
 
 for LogIN       ---> http://localhost:8084/webServices/webresources/users/login/(email/password)
 
-for Register    ---> http://localhost:8084/webServices/webresources/account/register/(name/email/password/gender/address/nationality/status)
+for Register    ---> http://localhost:8084/webServices/webresources/users/register/(name/email/password/gender/address/nationality/status)
 
 things between ( ) its an attribute of the function , you must remove () in URL
