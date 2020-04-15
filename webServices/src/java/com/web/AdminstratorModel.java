@@ -5,10 +5,39 @@
  */
 package com.web;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+
 /**
  *
  * @author toqa khaled
  */
-public class AdminstratorModel extends UsersModel{
+
+@Path("admin")
+public class AdminstratorModel  {
+    adminstratorController a = new adminstratorController();
     
+    @GET
+    @Path("/getAllUsers/{status}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<UsersModel> getAllUsers(@PathParam("status")String status) throws SQLException, ClassNotFoundException
+    {
+       return a.getAllUsers(status);
+        
+    }
+   
+    
+    
+    
+    
+    
+   
+    
+      
 }

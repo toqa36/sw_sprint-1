@@ -13,7 +13,7 @@ import static org.apache.coyote.http11.Constants.a;
  */
 public class customerModel extends UsersModel{
    
-    public AccountController a=new AccountController();
+  
     
  
 }
