@@ -48,11 +48,11 @@ public class AdminstratorModel extends UsersModel {
     }
     
     @GET
-    @Path("/insert/{email}/{status}/{name}/{email}/{password}/{gender}/{address}/{nationality}/{status}/{decission}")
+    @Path("/insert/{email1}/{status}/{name}/{email2}/{password}/{gender}/{address}/{nationality}/{status}/{decission}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String acceptAdmins(@PathParam("email")String Adminemail,
+    public String acceptAdmins(@PathParam("email1")String Adminemail,
             @PathParam("status")String Adminstatus,@PathParam("name") String Username,
-            @PathParam("email") String Useremail,@PathParam("password") String password, 
+            @PathParam("email2") String Useremail,@PathParam("password") String password, 
             @PathParam("gender") String gender,@PathParam("address") String address, 
             @PathParam("nationality") String nationality, @PathParam("status") String Ueserstatus,
             @PathParam("decission") String decission) throws ClassNotFoundException, SQLException{

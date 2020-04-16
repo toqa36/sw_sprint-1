@@ -89,48 +89,26 @@ public class adminstratorController  {
     
      public void managePrands(){}
     
-    public String acceptAdmins(String Adminemail,String Adminstatus,String name,String Useremail,String password,
+    public String acceptAdmins(String Adminemail,String Adminstatus,String name,String Useremail,
+            String password,
             String gender,String address,String nationality,String status,String decission) throws ClassNotFoundException, SQLException{
     ArrayList<UsersModel> content = new ArrayList();
       UsersModel data=new UsersModel();
-        if(CheckLogIn(Useremail,Adminstatus)&&decission.equals("accept")){
+      if (isValidEmail(Adminemail)&&isValidEmail(Useremail)){
+        if(CheckLogIn(Adminemail,Adminstatus)&&decission.equals("accept")){
             insert( name, Useremail,password,gender ,address, nationality,status,decission);
             
-      /*  String query = "select * from notification  where email='"+email1+"'";
-        Connection con = null;
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-        con = DriverManager.getConnection("jdbc:derby://localhost:1527/database", "toqa", "123");
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery(query);
-         if(rs.next()){
-            data.setEmail(rs.getString("email"));
-            content.add(data);
-        }
-         if(content.size()==1){
-             if(decission.equals("accept")){
-                 query =  "insert into users (name,email,password,gender,address,nationality,status) values(?,?,?,?,?,?,?)";
-            PreparedStatement s = con.prepareStatement(query);
-            s.setString(1, name);
-            s.setString(2, email2);
-            s.setString(3, password);
-            s.setString(4, gender);
-            s.setString(5, address);
-            s.setString(6, nationality);
-            s.setString(7, status);
-            s.executeUpdate(); 
-            return "Is Accepted To Be Admin";
-             }
-             else
-        return "Is Rejected";
-         }
-        /* else
-             return "Not Founded";*/
-        
+     
        return "Is Accepted To Be Admin";
         }
         else
-         return "Is Rejected";
-       // return Useremail + "--"+Adminemail;
+         return "Is Rejected Please Log In Fist";
+      
+      
+      }
+      else 
+          return "Please Enter The Correct Email";
+        
         
     }
     public String insert (String name,String email,String password, String gender,String address,
@@ -197,6 +175,39 @@ public class adminstratorController  {
          
      return ret;
      }
+    
+    
+    
+       private static boolean isValidEmail(String email)
+    {
+        boolean ret = true;
+        int index;
+        index = email.indexOf("@");
+
+        if(email==null || email.trim().length()==0)
+        {
+            ret = false;
+        }
+        else if (index == -1){
+             ret = false;
+        
+        }
+        else
+        {
+
+            index = email.indexOf(".com");
+
+             index = email.indexOf("@gmail.com");
+
+
+            if(index == -1)
+            {
+                ret = false;
+            }
+        }
+
+        return ret;
+    }
     
 
 }
