@@ -49,7 +49,7 @@ public class usersController {
          if(status.equals("admin")){
          
          if(tmp.size()==1){
-              query =  "insert into adminlogin (email,password,status) values(?,?,?)";
+             query = "insert into adminlogin(email,password,status) values(?,?,?)";
             PreparedStatement s = con.prepareStatement(query);
             s.setString(1, email);
             s.setString(2, password);
@@ -98,7 +98,7 @@ public class usersController {
         if (  tmp.size()!=0 || cname.size()!=0) {
             return "this account taken before please choose another one or the name is already exist";
         } else if (status.equals("admin")) {
-             query =  "insert into notification (name,email,password,gender,address,nationality,status) values(?,?,?,?,?,?,?)";
+           query = "insert into notification(name,email,password,gender,address,nationality,status) values(?,?,?,?,?,?,?)";
             PreparedStatement s = con.prepareStatement(query);
             s.setString(1, name);
             s.setString(2, email);

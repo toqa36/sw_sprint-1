@@ -26,9 +26,9 @@ import javax.ws.rs.core.MediaType;
 
 public class adminstratorController  {
 
-    public ArrayList<UsersModel> getAllUsers(String status) throws ClassNotFoundException, SQLException  {
+    public ArrayList<UsersModel> getAllUsers(String status, String email) throws ClassNotFoundException, SQLException  {
         ArrayList<UsersModel> tmp = new ArrayList();
-        if(status.equals("admin")){
+        if(status.equals("admin")&&CheckLogIn(email,status)){
         String query = "select * from users";
         Connection con = null;
         Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -57,6 +57,8 @@ public class adminstratorController  {
       ArrayList<UsersModel> content = new ArrayList();
       UsersModel data=new UsersModel();
         if(CheckLogIn(email,status)){
+        ArrayList<UsersModel> tmp = new ArrayList();
+        if(status.equals("admin")){
         String query = "select * from notification";
         Connection con = null;
         Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -64,32 +66,35 @@ public class adminstratorController  {
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
-            data.setName(rs.getString("name"));
-            data.setEmail(rs.getString("email"));
-            data.setGender(rs.getString("gender"));
-            data.setStatus(rs.getString("status"));
-            data.setAddress(rs.getString("address"));
-            data.setNationality(rs.getString("nationality"));
-            data.setStatus(rs.getString("status"));
-            content.add(data);
+            UsersModel m = new UsersModel();
+            m.setName(rs.getString("name"));
+            m.setEmail(rs.getString("email"));
+            m.setGender(rs.getString("gender"));
+            m.setStatus(rs.getString("status"));
+            m.setAddress(rs.getString("address"));
+            m.setNationality(rs.getString("nationality"));
+            m.setStatus(rs.getString("status"));
+            tmp.add(m);
         }
-        return content;
+        return tmp;
         }
         else
-            return content;    
+            return tmp;
      }
-     
+        else
+            return content;
+     }
      
      
     
      public void managePrands(){}
     
-    public String acceptAdmins(String email1,String status1,String name,String email2,String password,
+    public String acceptAdmins(String Adminemail,String Adminstatus,String name,String Useremail,String password,
             String gender,String address,String nationality,String status,String decission) throws ClassNotFoundException, SQLException{
     ArrayList<UsersModel> content = new ArrayList();
       UsersModel data=new UsersModel();
-        if(CheckLogIn(email1,status1)){
-            insert( name, email2,password,gender ,address, nationality,status,decission);
+        if(CheckLogIn(Useremail,Adminstatus)&&decission.equals("accept")){
+            insert( name, Useremail,password,gender ,address, nationality,status,decission);
             
       /*  String query = "select * from notification  where email='"+email1+"'";
         Connection con = null;
@@ -121,30 +126,36 @@ public class adminstratorController  {
         /* else
              return "Not Founded";*/
         
-       
+       return "Is Accepted To Be Admin";
         }
-        
-        return "Please Log In First";
+        else
+         return "Is Rejected";
+       // return Useremail + "--"+Adminemail;
         
     }
-    public String insert (String name,String email,String password,
-            String gender,String address,String nationality,String status,String decission) throws ClassNotFoundException, SQLException{
-         ArrayList<UsersModel> content = new ArrayList();
-      UsersModel data=new UsersModel();
-    
-        String query = "select email from notification  where email='"+email+"'";
-        Connection con = null;
+    public String insert (String name,String email,String password, String gender,String address,
+    String nationality,String status, String decission) throws ClassNotFoundException, SQLException{
+
+          ArrayList<UsersModel> tmp = new ArrayList();
+ String query = "select * from notification  where email='"+email+"'";
+       /*  if (!isValidEmail(email)){
+        return "Please Enter Correct Email";}*/
+         Connection con = null;
         Class.forName("org.apache.derby.jdbc.ClientDriver");
         con = DriverManager.getConnection("jdbc:derby://localhost:1527/database", "toqa", "123");
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
-         if(rs.next()){
-            data.setEmail(rs.getString("email"));
-            content.add(data);
+        
+         if (rs.next()) {
+            UsersModel mail = new UsersModel();
+            mail.setEmail(rs.getString("email"));
+        
+            tmp.add(mail);
+          
         }
-         if(content.size()!=0){
-             if(decission.equals("accept")){
-                query = "insert into users(name,email,password,gender,address,nationality,status) values(?,?,?,?,?,?,?)";
+         if(tmp.size()!=0){
+             
+             query = "insert into users(name,email,password,gender,address,nationality,status) values(?,?,?,?,?,?,?)";
             PreparedStatement s = con.prepareStatement(query);
             s.setString(1, name);
             s.setString(2, email);
@@ -156,10 +167,7 @@ public class adminstratorController  {
             s.executeUpdate();
             return "Is Accepted To Be Admin";
              }
-             else
-        return "Is Rejected";
-  
-    }
+       
          else
              return "Not Foounded";
     }

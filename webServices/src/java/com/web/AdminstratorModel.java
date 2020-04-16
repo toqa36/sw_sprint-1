@@ -28,11 +28,11 @@ public class AdminstratorModel extends UsersModel {
     adminstratorController a = new adminstratorController();
     
     @GET
-    @Path("/getAllUsers/{status}")
+    @Path("/getAllUsers/{email}/{status}")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<UsersModel> getAllUsers(@PathParam("status")String status) throws SQLException, ClassNotFoundException
+    public ArrayList<UsersModel> getAllUsers(@PathParam("email")String email,@PathParam("status")String status) throws SQLException, ClassNotFoundException
     {
-       return a.getAllUsers(status);}
+       return a.getAllUsers(status,email);}
     @GET
     @Path("/notification/{email}/{status}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -50,14 +50,14 @@ public class AdminstratorModel extends UsersModel {
     @GET
     @Path("/insert/{email}/{status}/{name}/{email}/{password}/{gender}/{address}/{nationality}/{status}/{decission}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String acceptAdmins(@PathParam("email")String email1,
-            @PathParam("status")String status1,@PathParam("name") String name2,
-            @PathParam("email") String email2,@PathParam("password") String password2, 
-            @PathParam("gender") String gender2,@PathParam("address") String address2, 
-            @PathParam("nationality") String nationality2, @PathParam("status") String status2,
-            @PathParam("decission") String decission2) throws ClassNotFoundException, SQLException{
-      return  a.acceptAdmins(email1,status1,name2,email2,password2,gender2,address2,nationality2,
-              status2,decission2);
+    public String acceptAdmins(@PathParam("email")String Adminemail,
+            @PathParam("status")String Adminstatus,@PathParam("name") String Username,
+            @PathParam("email") String Useremail,@PathParam("password") String password, 
+            @PathParam("gender") String gender,@PathParam("address") String address, 
+            @PathParam("nationality") String nationality, @PathParam("status") String Ueserstatus,
+            @PathParam("decission") String decission) throws ClassNotFoundException, SQLException{
+      return  a.acceptAdmins(Adminemail,Adminstatus,Username,Useremail,password,gender,address,
+              nationality, Ueserstatus,decission);
     }  //ans@gmail.com
     
     
